@@ -1,0 +1,30 @@
+[General]
+Enabled = True
+
+# Hours where the server should be offline (seperate hours and minutes with a comma e.g. 05,30)
+StartTime = 02
+EndTime = 20
+
+[WOL]
+# If the server should be woken when not in offline hours
+Enabled = True
+
+# The mac address to be used when waking
+MACAddress = aa:aa:aa:aa:aa:aa
+
+[SSH]
+# SSH Connection details
+Address =
+Port = 22
+User = user
+Password =
+
+# Specify which command is executed when shutting down server (could point to a custom script)
+# Command = systemctl poweroff
+
+[Plex]
+# Plex server details
+Enabled = True
+Hostname = x.x.x.x
+Port = 32400
+HTTP = True
