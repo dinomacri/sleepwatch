@@ -13,7 +13,7 @@ To install ``sleepwatch`` clone the repository.
 Install the necessary python libraries.
 
 ``pip install -r requirements.txt``
-.
+
 Execute the script
 
 ``python sleepwatch.py``
