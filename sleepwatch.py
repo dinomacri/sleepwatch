@@ -49,7 +49,7 @@ if config.has_option('SSH', 'Address'):
     SSHAddress = config.get('SSH', 'Address')
 
 if config.has_option('SSH', 'Port'):
-    SSHPort = config.get('SSH', 'Port')
+    SSHPort = int(config.get('SSH', 'Port'))
 
 if config.has_option('SSH', 'User'):
     SSHUser = config.get('SSH', 'User')
