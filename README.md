@@ -14,9 +14,19 @@ Install the necessary python libraries.
 
 ``pip install -r requirements.txt``
 
-Execute the script
+Execute the script (at regular intervals)
 
 ``python sleepwatch.py``
+
+Optional: Add an entry to your crontab file
+
+Enter your crontab file:
+
+``crontab -e``
+
+Append the line:
+
+``/15 * * * * python /opt/sleepwatch/sleepwatch.py >> /opt/sleepwatch/sleepwatch.log 2>&1``
 
 ## Configuration
 
