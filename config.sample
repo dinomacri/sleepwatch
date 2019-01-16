@@ -1,7 +1,7 @@
 [General]
 Enabled = True
 
-# Hours where the server should be offline
+# Hours where the server should be offline (seperate hours and minutes with a comma e.g. 05,30)
 StartTime = 02
 EndTime = 20
 
