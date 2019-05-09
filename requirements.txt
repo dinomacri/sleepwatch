@@ -1,3 +1,4 @@
-wakeonlan==1.1.6
-paramiko==2.4.2
-urllib3==1.23
+wakeonlan>=1.1.6
+paramiko>=2.4.2
+urllib3>=1.25.2
+pathlib>=1.0.1

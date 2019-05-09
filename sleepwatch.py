@@ -24,7 +24,7 @@ try:
     base_path = Path(__file__).parent
     configpath = (base_path / "config").resolve()
 
-    config.read("config")
+    config.read("configpath")
 except FileNotFoundError as error:
     sys.exit(error)
 
