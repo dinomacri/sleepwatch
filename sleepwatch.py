@@ -119,14 +119,17 @@ def wolwake():
 
 
 def checktime():
-    if starttime <= now_time <= endtime:
-        print ("The current time is within the offline hours range. Checking for plex status")
-        if checkplex() == 1:
-            sshshutdown()
-        return 1
+    if enabled:
+        if starttime <= now_time <= endtime:
+            print ("The current time is within the offline hours range. Checking for plex status")
+            if checkplex() == 1:
+                sshshutdown()
+            return 1
+        else:
+            print("Current time is not within offline hours range, checking if host is online and if WOL is enabled.")
+            wolwake()
     else:
-        print("Current time is not within offline hours range, checking if host is online and if WOL is enabled.")
-        wolwake()
+        sys.exit("Enabled is set to false. Check configuration file.")
 
 # Function checks response to see if any content is being watched
 def checkplex():
