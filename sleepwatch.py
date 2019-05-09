@@ -26,9 +26,9 @@ parser.add_argument('--config', action='store', dest='configfile', default=confi
 
 # Reads the config file
 try:
-    config.read("configfile")
+    config.read(configfile)
 except ConfigParser.Error as error:
-    sys.exit("Error while reading confiuguration file:", error)
+    sys.exit("Error while reading configuration file:", error)
 
 # General configuration options
 if config.has_option('General', 'Enabled'):
