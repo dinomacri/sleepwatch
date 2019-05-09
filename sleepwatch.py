@@ -30,9 +30,9 @@ except FileNotFoundError as error:
 
 # General configuration options
 if config.has_option('General', 'Enabled'):
-    enabled = config.getboolean('General', 'Enabled')
-else:
     enabled = False
+else:
+    enabled = config.getboolean('General', 'Enabled')
 
 if config.has_option('General', 'StartTime'):
     starttime = time(int(config.get('General', 'StartTime')))
