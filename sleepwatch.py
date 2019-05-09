@@ -3,7 +3,8 @@ import urllib3
 import configparser
 import sys
 import paramiko
-from pathlib import Path
+import os
+import argparse
 from wakeonlan import send_magic_packet
 
 # Creates an object for the datetime module
@@ -16,23 +17,24 @@ config = configparser.ConfigParser()
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
+# Default config file path
+configfile = os.path.expanduser("~/.config/sleepwatch/config")
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--config', action='store', dest='configfile', default=configfile, help='Absolute path to configuration file')
+
 # Reads the config file
 try:
-    # Creates an object for the Config Parser
-    config = configparser.ConfigParser()
-    
-    base_path = Path(__file__).parent
-    configpath = (base_path / "config").resolve()
-
-    config.read("configpath")
-except FileNotFoundError as error:
-    sys.exit(error)
+    config.read("configfile")
+except ConfigParser.Error as error:
+    sys.exit("Error while reading confiuguration file:", error)
 
 # General configuration options
 if config.has_option('General', 'Enabled'):
-    enabled = False
-else:
     enabled = config.getboolean('General', 'Enabled')
+    if enabled == False:
+        sys.exit("Enabled is set to False in configuration file. Exiting...")
 
 if config.has_option('General', 'StartTime'):
     starttime = time(int(config.get('General', 'StartTime')))
@@ -124,17 +126,14 @@ def wolwake():
 
 
 def checktime():
-    if enabled:
-        if starttime <= now_time <= endtime:
-            print ("The current time is within the offline hours range. Checking for plex status")
-            if checkplex() == 1:
-                sshshutdown()
-            return 1
-        else:
-            print("Current time is not within offline hours range, checking if host is online and if WOL is enabled.")
-            wolwake()
+    if starttime <= now_time <= endtime:
+        print ("The current time is within the offline hours range. Checking for plex status")
+        if checkplex() == 1:
+            sshshutdown()
+        return 1
     else:
-        sys.exit("Enabled is set to false. Check configuration file.")
+        print("Current time is not within offline hours range, checking if host is online and if WOL is enabled.")
+        wolwake()
 
 # Function checks response to see if any content is being watched
 def checkplex():
