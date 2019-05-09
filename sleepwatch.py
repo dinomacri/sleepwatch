@@ -3,6 +3,7 @@ import urllib3
 import configparser
 import sys
 import paramiko
+from pathlib import Path
 from wakeonlan import send_magic_packet
 
 # Creates an object for the datetime module
@@ -19,6 +20,10 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 try:
     # Creates an object for the Config Parser
     config = configparser.ConfigParser()
+    
+    base_path = Path(__file__).parent
+    configpath = (base_path / "config").resolve()
+
     config.read("config")
 except FileNotFoundError as error:
     sys.exit(error)
