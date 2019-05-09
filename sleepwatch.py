@@ -35,6 +35,8 @@ if config.has_option('General', 'Enabled'):
     enabled = config.getboolean('General', 'Enabled')
     if enabled == False:
         sys.exit("Enabled is set to False in configuration file. Exiting...")
+else:
+    sys.exit("Option 'Enabled' in [General] could not be found. Is your configuration file path set correctly?")
 
 if config.has_option('General', 'StartTime'):
     starttime = time(int(config.get('General', 'StartTime')))
