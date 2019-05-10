@@ -24,13 +24,19 @@ configfile = os.path.expanduser("~/.config/sleepwatch/config")
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', action='store', dest='configfile', default=configfile, help='Absolute path to configuration file')
 
+# Update defaults with arguments passed through CLI
+args = parser.parse_args()
+configfile = args.configfile
+
 # Reads the config file
 try:
     config.read(configfile)
+    print("Loading configuration from: {}".format(configfile))
 except ConfigParser.Error as error:
-    sys.exit("Error while reading configuration file:", error)
+    sys.exit("Error while reading configuration file: {}".format(configfile), error)
 
 # General configuration options
+print("Reading configuration options")
 if config.has_option('General', 'Enabled'):
     enabled = config.getboolean('General', 'Enabled')
     if enabled == False:
