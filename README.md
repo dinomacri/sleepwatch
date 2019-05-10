@@ -16,7 +16,7 @@ Install the necessary python libraries.
 
 Execute the script (at regular intervals)
 
-``python sleepwatch.py``
+``python sleepwatch.py --config CONFIGFILE``
 
 Optional: Add an entry to your crontab file
 
@@ -26,12 +26,15 @@ Enter your crontab file:
 
 Append the line:
 
-``/15 * * * * python /opt/sleepwatch/sleepwatch.py >> /opt/sleepwatch/sleepwatch.log 2>&1``
+``/15 * * * * python /path/to/sleepwatch/sleepwatch.py --config CONFIGFILE >> /path/to/sleepwatch/sleepwatch.log 2>&1``
 
 ## Configuration
 
+Default configuration file is located at: ~/.config/sleepwatch/config
+Alternate config path can be passed through the CLI with --config
+
 A sample configuration is included in ``config.sample``.
 
-Create a copy of the config and make your adjustments.
+Create a copy of the config and make required changes.
 
 ``cp config.sample config`` 
