@@ -31,6 +31,7 @@ Append the line:
 ## Configuration
 
 Default configuration file is located at: ~/.config/sleepwatch/config
+
 Alternate config path can be passed through the CLI with --config
 
 A sample configuration is included in ``config.sample``.
